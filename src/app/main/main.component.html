@@ -1,0 +1,14 @@
+<mat-sidenav-container class="app-container" autosize>
+  <mat-sidenav #sidenav mode="over" class="sidebar">
+    <button mat-button (click)="sidenav.toggle()">
+      Toggle
+    </button>
+    Sidenav content
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <button mat-button (click)="sidenav.toggle()">
+        Toggle
+    </button>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
