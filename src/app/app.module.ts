@@ -19,6 +19,19 @@ import { BdeListComponent } from './bde-list/bde-list.component';
 import { SingleBdeComponent } from './bde-list/single-bde/single-bde.component';
 import { BdeFormComponent } from './bde-list/bde-form/bde-form.component';
 import { ProfileComponent } from './auth/profile/profile.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { HeaderComponent } from './theme/header/header.component';
+import { MatToolbarModule} from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MenuProfileComponent } from './profile/menu-profile/menu-profile.component';
+import { NavigationComponent } from './theme/navigation/navigation.component';
+import { MemberListComponent } from './bde-list/single-bde/member-list/member-list.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -29,7 +42,11 @@ import { ProfileComponent } from './auth/profile/profile.component';
     BdeListComponent,
     SingleBdeComponent,
     BdeFormComponent,
-    ProfileComponent
+    ProfileComponent,
+    HeaderComponent,
+    MenuProfileComponent,
+    NavigationComponent,
+    MemberListComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +58,16 @@ import { ProfileComponent } from './auth/profile/profile.component';
     BrowserAnimationsModule,
     MatSidenavModule,
     ReactiveFormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatCardModule,
+    MatListModule,
+    MatProgressSpinnerModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

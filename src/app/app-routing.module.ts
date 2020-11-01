@@ -26,8 +26,8 @@ const routes: Routes = [
     children: [
       {path: 'events', component: BdeListComponent},
       {path: 'bde', component: BdeListComponent},
-      {path: 'bde/{id}', component: SingleBdeComponent},
       {path: 'bde/new', component: BdeFormComponent},
+      {path: 'bde/:id', component: SingleBdeComponent},
       {path: '', redirectTo: '/events', pathMatch: 'full'},
     ]
   },

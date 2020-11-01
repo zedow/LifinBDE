@@ -1,14 +1,38 @@
 <mat-sidenav-container class="app-container" autosize>
   <mat-sidenav #sidenav mode="over" class="sidebar">
     <button mat-button (click)="sidenav.toggle()">
-      Toggle
+      <mat-icon>close</mat-icon>
     </button>
-    Sidenav content
+    <mat-list>
+      <mat-list-item>
+        <div mat-card-avatar class="bde-image" style="background: url(https://material.angular.io/assets/img/examples/shiba2.jpg)"></div>
+        <span *ngIf="user">{{ user.displayName }}</span>
+      </mat-list-item>
+      <mat-list-item routerLink="bde/new" (click)="sidenav.toggle()"> Ajouter un Bde </mat-list-item>
+      <mat-list-item routerLink="bde" (click)="sidenav.toggle()"> Les Bde </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item *ngIf="user" (click)="signOut()"><mat-icon>login</mat-icon> Déconnexion</mat-list-item>
+    </mat-list>
+
   </mat-sidenav>
   <mat-sidenav-content>
-    <button mat-button (click)="sidenav.toggle()">
-        Toggle
-    </button>
-    <router-outlet></router-outlet>
+    <p>
+      <mat-toolbar color="primary">
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Lifin BDE</span>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+          <mat-icon>favorite</mat-icon>
+        </button>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+          <mat-icon>share</mat-icon>
+        </button>
+      </mat-toolbar>
+    </p>
+    <div class="custom-container">
+      <router-outlet></router-outlet>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

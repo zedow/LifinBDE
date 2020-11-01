@@ -1,22 +1,48 @@
 
 <h2>Créer un compte</h2>
 <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="email">Adresse mail</label>
-    <input type="text"
-            id="email"
-            class="form-control"
-            formControlName="email">
-  </div>
-  <div class="form-group">
-    <label for="password">Mot de passe</label>
-    <input type="password"
-            id="password"
-            class="form-control"
-            formControlName="password">
-  </div>
+  <p>
+    <mat-form-field appearance="legacy">
+      <mat-label for="password">Adresse email</mat-label>
+      <input matInput type="text" id="email" formControlName="email" autocomplete="email">
+      <mat-hint>Doit contenir au moins 6 caractères</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="legacy">
+      <mat-label for="password">Mot de passe</mat-label>
+      <input matInput type="password" id="password" formControlName="password" autocomplete="current-password">
+      <mat-hint>Doit contenir au moins 6 caractères</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="legacy">
+      <mat-label>Téléphone</mat-label>
+      <input matInput id="tel" type="tel" formControlName="tel" autocomplete="tel">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="legacy">
+      <mat-label>Nom</mat-label>
+      <input matInput id="lastname" formControlName="lastname" autocomplete="family-name">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="legacy">
+      <mat-label>Prénom</mat-label>
+      <input matInput id="surname" formControlName="surname" autocomplete="given-name">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="legacy">
+      <mat-label>Age</mat-label>
+      <input matInput type="number" id="age" formControlName="age">
+    </mat-form-field>
+  </p>
   <button class="btn btn-primary"
           type="submit"
           [disabled]="signupForm.invalid">Créer mon compte</button>
 </form>
 <p class="text-danger">{{ errorMessage }}</p>
+
+

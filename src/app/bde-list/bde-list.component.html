@@ -1,17 +1,33 @@
-<form class="example-form">
-  <mat-form-field class="example-full-width">
-    <mat-label>Email</mat-label>
-    <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
-           placeholder="Ex. pat@example.com">
-    <mat-hint>Errors appear instantly!</mat-hint>
-    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-      Please enter a valid email address
-    </mat-error>
-    <mat-error *ngIf="emailFormControl.hasError('required')">
-      Email is <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
-</form>
-<ul>
-  <li *ngFor="let bde of bdeList | async">{{ bde.Name }}</li>
-</ul>
+
+<mat-form-field class="example-full-width">
+  <mat-label>Filtrer</mat-label>
+  <input matInput placeholder="Ex. NormandieBde" (keyup)="filterData($event)">
+</mat-form-field>
+
+<div *ngIf="bdeList">
+  <mat-card class="example-card" *ngFor="let bde of bdeList">
+    <mat-card-header>
+      <div mat-card-avatar class="bde-image" style="background: url(https://material.angular.io/assets/img/examples/shiba2.jpg)"></div>
+      <mat-card-title>{{ bde.name }}</mat-card-title>
+      <mat-card-subtitle>{{ bde.school }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        {{ bde.description }}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="followBde(bde.id)">
+        {{ bde.id ? 'SUIVRE' : 'SUIVI' }}<mat-icon *ngIf="bde.id">done</mat-icon>
+      </button>
+      <button mat-button routerLink="{{ bde.id }}">VOIR</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<div class="example-loading-shade"
+       *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+</div>
+<mat-paginator [length]="this.resultLength"
+[pageSize]="2">
+</mat-paginator>

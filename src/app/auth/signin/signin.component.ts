@@ -26,6 +26,15 @@ export class SigninComponent implements OnInit {
     });
   }
 
+
+  googleSignIn() {
+    this.authService.signInWithGoogle().then(
+      () => {
+        this.router.navigate(['events']);
+      }
+    );
+  }
+
   onSubmit() {
 
     const email = this.signinForm.get('email').value;
