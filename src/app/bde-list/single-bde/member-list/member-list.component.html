@@ -5,25 +5,19 @@
   </mat-form-field>
 
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <!-- Position Column -->
-    <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef> N° </th>
-      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-    </ng-container>
-
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Nom </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.user.name}}</td>
     </ng-container>
 
     <!-- Weight Column -->
     <ng-container matColumnDef="role">
       <th mat-header-cell *matHeaderCellDef> Rôle </th>
       <td mat-cell *matCellDef="let element">
-        <div *ngIf="element.role == 'Admin'">
+        <div *ngIf="element.role == 'Admin' || element.role == 'Owner'">
           <mat-icon color="primary" >security</mat-icon>
-          <span class="cdk-visually-hidden">Rôle administrateur</span>
+          <span class="cdk-visually-hidden">Rôle {{ element.role }}</span>
         </div>
         <div *ngIf="element.role == 'Membre'">
           <mat-icon color="primary">people</mat-icon>

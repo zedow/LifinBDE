@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { rejects } from 'assert';
 import * as firebase from 'firebase';
 import { auth } from 'firebase/app';
+import { Observable } from 'rxjs';
 
 // Models
 import { CreateUserModel } from '../models/createUser.model';
@@ -30,8 +31,7 @@ export class AuthService {
         this.fireAuth.createUserWithEmailAndPassword(user.email,user.password).then(
           (result) => {
             const newUser: User = {
-              surname: user.surname,
-              lastname: user.lastname,
+              name: user.name,
               age: user.age,
               tel: user.tel
             }
@@ -77,7 +77,9 @@ export class AuthService {
                 if(!doc.exists)
                 {
                   docRef.set({
-                    name: user.displayName
+                    name: user.displayName,
+                    tel: user.phoneNumber,
+                    age: null
                   })
                 }
                 resolve(result);
@@ -128,45 +130,7 @@ export class AuthService {
     return this.fireStore.collection('Users').doc(this.currentUser.uid).ref
   }
 
-  async getCurrentUser() {
-    return new Promise(
-      (resolve,reject) => {
-        this.fireAuth.currentUser.then(
-          (result) => {
-            resolve(result)
-          },
-          (error) => {
-            reject(error)
-          }
-        )
-      }
-    )
-  }
-
-  getCurrentUser2() {
-    return this.currentUser;
-  }
-
-
-  getCurrentUser4() {
-    return firebase.auth().currentUser;
-  }
-  getCurrentUser3() : Promise<firebase.User> {
-    return new Promise(
-      (resolve, reject) => {
-
-        this.fireAuth.currentUser.then(
-          (result) => {
-            console.log(result);
-
-            resolve(result)
-          },
-          (error) => {
-            console.log(error);
-            reject(error)
-          }
-        )
-      }
-    )
+  getCurrentUser() : Observable<firebase.User> {
+    return this.fireAuth.authState;
   }
 }

@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { ApiMember } from 'src/app/models/bde.model';
 import { Member } from 'src/app/models/user.model';
 import { BdeService } from 'src/app/services/bde.service';
 
@@ -10,12 +11,12 @@ import { BdeService } from 'src/app/services/bde.service';
 })
 export class MemberListComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['position', 'name', 'role'];
+  displayedColumns: string[] = ['name', 'role'];
 
-  memberList: Member[] = null;
-  dataSource: MatTableDataSource<Member>;
+  memberList: ApiMember[] = null;
+  dataSource: MatTableDataSource<ApiMember>;
 
-  @Input() bdeId: string;
+  @Input() bdeId: number;
 
   @ViewChild(MatTable) table: MatTable<any>;
 
@@ -23,19 +24,19 @@ export class MemberListComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
 
-    this.bdeService.getBdeMembersList(this.bdeId).subscribe(
+    this.bdeService.GetBdeMembers(this.bdeId).subscribe(
       (members) => {
+        console.log(members);
         this.memberList = members;
         console.log('Data initialisées');
         this.dataSource = new MatTableDataSource(this.memberList);
-        this.table.renderRows();
       }
     );
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = filterValue.trim();
   }
 
 }

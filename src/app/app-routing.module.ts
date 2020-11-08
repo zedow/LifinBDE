@@ -9,6 +9,7 @@ import { BdeListComponent } from './bde-list/bde-list.component';
 import { BdeFormComponent } from './bde-list/bde-form/bde-form.component';
 import { SingleBdeComponent } from './bde-list/single-bde/single-bde.component';
 import { ProfileComponent } from './auth/profile/profile.component';
+import { EventsListComponent } from './events-list/events-list/events-list.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
@@ -24,7 +25,7 @@ const onlyAllowSelf = next => map(
 const routes: Routes = [
   {path: '', component: MainComponent,
     children: [
-      {path: 'events', component: BdeListComponent},
+      {path: 'events', component: EventsListComponent},
       {path: 'bde', component: BdeListComponent},
       {path: 'bde/new', component: BdeFormComponent},
       {path: 'bde/:id', component: SingleBdeComponent},

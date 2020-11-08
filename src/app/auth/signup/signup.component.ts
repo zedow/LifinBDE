@@ -31,7 +31,6 @@ export class SignupComponent implements OnInit {
       password: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)]],
       tel: ['',Validators.required],
       lastname: ['', [Validators.required]],
-      surname: ['', [Validators.required]],
       age: ['', [Validators.required]]
     });
   }
@@ -40,7 +39,6 @@ export class SignupComponent implements OnInit {
 
     const email = this.signupForm.get('email').value;
     const password = this.signupForm.get('password').value;
-    const surname = this.signupForm.get('surname').value;
     const lastname = this.signupForm.get('lastname').value;
     const age = this.signupForm.get('age').value;
     const tel = this.signupForm.get('tel').value;
@@ -48,8 +46,7 @@ export class SignupComponent implements OnInit {
     const user: CreateUserModel = {
       email: email,
       password: password,
-      surname: surname,
-      lastname: lastname,
+      name: lastname,
       age: age,
       tel: tel
     }

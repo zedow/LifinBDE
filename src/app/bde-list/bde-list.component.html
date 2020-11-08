@@ -1,7 +1,7 @@
 
 <mat-form-field class="example-full-width">
   <mat-label>Filtrer</mat-label>
-  <input matInput placeholder="Ex. NormandieBde" (keyup)="filterData($event)">
+  <input matInput placeholder="Ex. NormandieBde" (keyup)="applyFilter($event)">
 </mat-form-field>
 
 <div *ngIf="bdeList">
@@ -17,8 +17,12 @@
       </p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="followBde(bde.id)">
-        {{ bde.id ? 'SUIVRE' : 'SUIVI' }}<mat-icon *ngIf="bde.id">done</mat-icon>
+      <button *ngIf="bde" mat-button color="primary">
+        SUIVI
+        <mat-icon *ngIf="bde">done</mat-icon>
+      </button>
+      <button mat-raised-button color="primary" (click)="followBde(bde.id); bde.followed = true" *ngIf="!bde">
+        SUIVRE
       </button>
       <button mat-button routerLink="{{ bde.id }}">VOIR</button>
     </mat-card-actions>
@@ -28,6 +32,3 @@
        *ngIf="isLoadingResults">
     <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
 </div>
-<mat-paginator [length]="this.resultLength"
-[pageSize]="2">
-</mat-paginator>

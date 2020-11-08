@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Bde } from 'src/app/models/bde.model';
+import { ApiBde, Bde } from 'src/app/models/bde.model';
 import { BdeService } from 'src/app/services/bde.service';
 
 @Component({
@@ -10,22 +10,16 @@ import { BdeService } from 'src/app/services/bde.service';
 })
 export class SingleBdeComponent implements OnInit {
 
-  bde: Bde = null;
+  bde: ApiBde = null;
 
-  constructor(private route: ActivatedRoute, private bdeService: BdeService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private bdeService: BdeService) { }
 
   ngOnInit(): void {
 
     const id = this.route.snapshot.paramMap.get("id")
     this.bdeService.getBde(id).subscribe(
       (data) => {
-        const bdeData = data.data();
-        this.bde = {
-          name: bdeData.name,
-          id: data.id,
-          school: bdeData.school,
-          description: bdeData.description
-        };
+        this.bde = data;
       }
     );
   }

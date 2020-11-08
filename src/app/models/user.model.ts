@@ -1,14 +1,12 @@
 export interface User {
-  surname: string
-  lastname: string
+  name: string
   age: number
   tel: string
 }
 
 export class Member {
 
-  position: number;
-  name: string;
+  fullName: string;
   role: string;
   id: string;
 }

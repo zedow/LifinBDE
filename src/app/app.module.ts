@@ -32,6 +32,11 @@ import { NavigationComponent } from './theme/navigation/navigation.component';
 import { MemberListComponent } from './bde-list/single-bde/member-list/member-list.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { EventsListComponent } from './events-list/events-list/events-list.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -47,6 +52,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MenuProfileComponent,
     NavigationComponent,
     MemberListComponent,
+    EventsListComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +73,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatListModule,
     MatProgressSpinnerModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    HttpClientModule,
+    MatProgressBarModule,
+    MatTooltipModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

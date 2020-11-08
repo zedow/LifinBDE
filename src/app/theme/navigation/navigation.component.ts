@@ -17,6 +17,6 @@ export class NavigationComponent implements OnInit {
 
   backToList() {
 
-    this.location.back;
+    this.location.back();
   }
 }
