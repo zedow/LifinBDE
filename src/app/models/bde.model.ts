@@ -25,6 +25,11 @@ export interface ApiBde {
   id: number;
 }
 
+export interface IApiUserBde {
+  bde: ApiBde;
+  isFollowed: boolean;
+}
+
 export interface ApiMember {
 
   user: {

@@ -8,23 +8,24 @@
   <mat-card class="example-card" *ngFor="let bde of bdeList">
     <mat-card-header>
       <div mat-card-avatar class="bde-image" style="background: url(https://material.angular.io/assets/img/examples/shiba2.jpg)"></div>
-      <mat-card-title>{{ bde.name }}</mat-card-title>
-      <mat-card-subtitle>{{ bde.school }}</mat-card-subtitle>
+      <mat-card-title>{{ bde.bde.name }}</mat-card-title>
+      <mat-card-subtitle>{{ bde.bde.school }}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <p>
-        {{ bde.description }}
+        {{ bde.bde.description }}
+        {{ bde.isFollowed}}
       </p>
     </mat-card-content>
     <mat-card-actions>
-      <button *ngIf="bde" mat-button color="primary">
+      <button *ngIf="bde.isFollowed" mat-button color="primary">
         SUIVI
         <mat-icon *ngIf="bde">done</mat-icon>
       </button>
-      <button mat-raised-button color="primary" (click)="followBde(bde.id); bde.followed = true" *ngIf="!bde">
+      <button mat-raised-button color="primary" (click)="followBde(bde)" *ngIf="!bde.isFollowed">
         SUIVRE
       </button>
-      <button mat-button routerLink="{{ bde.id }}">VOIR</button>
+      <button mat-button routerLink="{{ bde.bde.id }}">VOIR</button>
     </mat-card-actions>
   </mat-card>
 </div>

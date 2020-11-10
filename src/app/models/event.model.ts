@@ -1,5 +1,5 @@
 import { firestore } from 'firebase';
-
+import { ApiBde } from '../models/bde.model';
 export interface MyEvent {
   name: string;
   description: string;
@@ -18,12 +18,7 @@ export interface ApiEvent {
   isHyped: boolean;
   followersNumber: number;
   hypedNumber: number;
-  bde: {
-    name: string;
-    description: string;
-    school: string;
-    id: number;
-  }
+  bde: ApiBde;
 }
 
 export interface ApiHype {

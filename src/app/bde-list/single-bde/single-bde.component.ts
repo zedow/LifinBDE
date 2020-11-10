@@ -17,7 +17,7 @@ export class SingleBdeComponent implements OnInit {
   ngOnInit(): void {
 
     const id = this.route.snapshot.paramMap.get("id")
-    this.bdeService.getBde(id).subscribe(
+    this.bdeService.GetBde(id).subscribe(
       (data) => {
         this.bde = data;
       }
