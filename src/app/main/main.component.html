@@ -17,18 +17,14 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <p>
-      <mat-toolbar color="primary">
+      <mat-toolbar color="primary" class="menu-bar">
         <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
-          <mat-icon>menu</mat-icon>
+          <mat-icon style="color: white;">menu</mat-icon>
         </button>
-        <a routerLink="/" class="logo">Lifin BDE</a>
-        <span class="example-spacer"></span>
-        <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-          <mat-icon>favorite</mat-icon>
-        </button>
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-          <mat-icon>share</mat-icon>
-        </button>
+        <a routerLink="/" class="logo">
+          <img src="../../assets/isotype-blanc.png" atl="logo" class="menu-logo">
+        </a>
+        <mat-icon style="color: white;">account_circle</mat-icon>
       </mat-toolbar>
     </p>
     <div class="custom-container">

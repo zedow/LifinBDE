@@ -1,8 +1,110 @@
 @import '~@angular/material/theming';
 @include mat-core();
-$candy-app-primary: mat-palette($mat-indigo);
-$candy-app-accent:  mat-palette($mat-pink, A200, A100, A400);
-$candy-app-warn:    mat-palette($mat-red);
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-mcgpalette0: (
+    50 : #fdede4,
+    100 : #f9d2ba,
+    200 : #f5b48d,
+    300 : #f1965f,
+    400 : #ee803c,
+    500 : #eb691a,
+    600 : #e96117,
+    700 : #e55613,
+    800 : #e24c0f,
+    900 : #dd3b08,
+    A100 : #ffffff,
+    A200 : #ffdbd3,
+    A400 : #ffb2a0,
+    A700 : #ff9d86,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-mcgpalette1: (
+    50 : #e3e3e3,
+    100 : #bababa,
+    200 : #8c8c8c,
+    300 : #5e5e5e,
+    400 : #3c3c3c,
+    500 : #191919,
+    600 : #161616,
+    700 : #121212,
+    800 : #0e0e0e,
+    900 : #080808,
+    A100 : #ff5050,
+    A200 : #ff1d1d,
+    A400 : #e90000,
+    A700 : #cf0000,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+$mat-theme-primay: (
+  50: #ffebee,
+  100: #ffcdd2,
+  200: #ef9a9a,
+  300: #e57373,
+  400: #ef5350,
+  500: #f44336,
+  600: #e53935,
+  700: #d32f2f,
+  800: #c62828,
+  900: #b71c1c,
+  A100: #ff8a80,
+  A200: #ff5252,
+  A400: #ff1744,
+  A700: #d50000,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+$candy-app-primary: mat-palette($md-mcgpalette0);
+$candy-app-accent:  mat-palette($md-mcgpalette1);
+$candy-app-warn:    mat-palette($mat-theme-primay, A200, A400, A700);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as `color` or `typography`.
@@ -11,8 +113,7 @@ $candy-app-theme: mat-light-theme((
     primary: $candy-app-primary,
     accent: $candy-app-accent,
     warn: $candy-app-warn,
-  )
-));
+  )));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component

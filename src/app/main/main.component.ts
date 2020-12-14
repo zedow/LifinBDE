@@ -15,6 +15,7 @@ export class MainComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router, private fireAuth: AngularFireAuth) { }
 
   ngOnInit(): void {
+    this.fireAuth.signOut();
     this.fireAuth.authState.subscribe(
       (value) => {
         this.user = value;

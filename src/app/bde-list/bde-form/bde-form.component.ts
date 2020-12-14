@@ -52,7 +52,7 @@ export class BdeFormComponent implements OnInit {
     this.bdeService.AddBde(bde).subscribe(
       (data) => {
         const newBde: ApiBde = data;
-        this._snackBar.open("Bde ajouté avec succès");
+        this._snackBar.open(`Bde ${data.name} ajouté avec succès`,"Close", {duration: 5000});
         this.newBde.reset();
       },
       (error) => {

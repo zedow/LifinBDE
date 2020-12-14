@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase';
 import { ApiEvent, MyEvent } from 'src/app/models/event.model';
@@ -16,12 +17,15 @@ export class EventsListComponent implements OnInit {
 
   noEvents = false;
 
-  constructor(private eventService: EventService, private authService: AuthService, private fireStore: AngularFirestore) { }
+  currentUser: string;
+
+  constructor(private eventService: EventService, private authService: AuthService, private fireStore: AngularFirestore,private fireAuth: AngularFireAuth) { }
 
   ngOnInit(): void {
-    this.authService.getCurrentUser().subscribe(
+
+    this.fireAuth.authState.subscribe(
       (user) => {
-        console.log('Current user found !');
+        this.currentUser = user.uid;
         this.eventService.getEvents(user.uid).subscribe(
           (data) => {
 
@@ -36,9 +40,11 @@ export class EventsListComponent implements OnInit {
             console.log(error);
             this.noEvents = true;
           }
-        )
+        );
       }
     )
+
+
   }
 
   getHype(event: ApiEvent)
@@ -48,7 +54,7 @@ export class EventsListComponent implements OnInit {
       console.log("IsHyped value : " + event.isHyped);
       console.log("EventId value :" + event.id);
 
-      this.eventService.RemoveHypeToEvent(event.id).subscribe(
+      this.eventService.RemoveHypeToEvent(event.id,this.currentUser).subscribe(
         (data) => {
           if(data == null)
           {
@@ -61,7 +67,7 @@ export class EventsListComponent implements OnInit {
     else {
       console.log("IsHyped value : " + event.isHyped);
       console.log("EventId value :" + event.id);
-      this.eventService.AddHypeToEvent(event.id).subscribe(
+      this.eventService.AddHypeToEvent(event.id,this.currentUser).subscribe(
         (data) => {
           event.isHyped = data;
           event.hypedNumber++;

@@ -20,8 +20,8 @@ export class BdeService {
   private bdeCollection: AngularFirestoreCollection<Bde>;
   bdeList: Observable<Bde[]>;
 
-  private bdeUrl = 'https://localhost:44392/api/bdes';
-  private userUrl = 'https://localhost:44392/api/users';
+  private bdeUrl = 'https://51.159.38.160/api/bdes';
+  private userUrl = 'https://51.159.38.160/api/users';
 
   constructor(private readonly fireStore: AngularFirestore, private authService: AuthService,
     private http: HttpClient) {

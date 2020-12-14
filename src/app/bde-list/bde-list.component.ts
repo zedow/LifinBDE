@@ -8,6 +8,7 @@ import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import { combineLatest } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-bde-list',
@@ -35,9 +36,21 @@ export class BdeListComponent implements AfterViewInit  {
 
   currentUserId: string;
 
-  constructor(private bdeService: BdeService, private _authService: AuthService, private _snackBar: MatSnackBar) {}
+  constructor(private bdeService: BdeService, private fireAuth: AngularFireAuth ,private _authService: AuthService, private _snackBar: MatSnackBar) {}
 
   ngAfterViewInit(): void {
+
+    this.fireAuth.authState.subscribe(
+      (user) => {
+        this.currentUserId = user.uid;
+      }
+    );
+
+    this.fireAuth.onAuthStateChanged((user) => {
+      console.log(" ALLO");
+
+      console.log(user);
+    })
 
     this.filterValue.subscribe(data => {
       this.filtertext = data;
@@ -47,7 +60,7 @@ export class BdeListComponent implements AfterViewInit  {
       switchMap(() => {
         this.isLoadingResults = true;
         console.log('In the switch map');
-        return this.bdeService.GetUserBdeList(this.filtertext,this._authService.currentUser.uid);
+        return this.bdeService.GetUserBdeList(this.filtertext,this.currentUserId);
       }),
       map(
         data => {

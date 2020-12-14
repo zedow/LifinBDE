@@ -33,7 +33,7 @@ const routes: Routes = [
     ]
   },
   {path: 'signup', component: SignupComponent},
-  {path: 'login', component: SigninComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectToProfile}},
+  {path: 'login', component: SigninComponent},
   {path: 'profile', component: ProfileComponent, data: {authGuardPipe: onlyAllowSelf}},
   {path: '**', redirectTo: '/bde', pathMatch:'full' }
 ];

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-signin',
@@ -13,7 +14,7 @@ export class SigninComponent implements OnInit {
   signinForm: FormGroup;
   errorMessage: string;
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router, private _snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -31,6 +32,10 @@ export class SigninComponent implements OnInit {
     this.authService.signInWithGoogle().then(
       () => {
         this.router.navigate(['events']);
+      },
+      (error) => {
+        console.log(error);
+        this._snackbar.open("Une erreur est survenue, veuillez réessayer");
       }
     );
   }

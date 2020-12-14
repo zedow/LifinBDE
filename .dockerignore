@@ -1,0 +1,5 @@
+dist
+functions
+node_modules
+.dockerignore
+.gitignore

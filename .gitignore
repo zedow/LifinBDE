@@ -1,5 +1,12 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+functions
+.firebaserc
+debug.log
+storage.rules
+firestore.rules
+firebase.json
+firestore.indexes.json
 # compiled output
 /dist
 /tmp

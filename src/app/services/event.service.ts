@@ -11,21 +11,20 @@ import { AuthService } from './auth.service';
 })
 export class EventService {
 
-  private eventsUrl = 'https://localhost:44392/api/events';
-  private usersUrl = 'https://localhost:44392/api/users';
+  private eventsUrl = 'https://51.159.38.160/api/events';
+  private usersUrl = 'https://51.159.38.160/api/users';
 
   constructor(private readonly fireStore: AngularFirestore, private authService: AuthService,
     private http: HttpClient) { }
 
   getEvents(uid: string): Observable<ApiEvent[]> {
 
-    return this.http.get<ApiEvent[]>(`${this.usersUrl}/${this.authService.currentUser.uid}/events`);
+    return this.http.get<ApiEvent[]>(`${this.usersUrl}/${uid}/events`);
   }
 
 
-  AddHypeToEvent(eventId: number): Observable<boolean> {
+  AddHypeToEvent(eventId: number,uid: string): Observable<boolean> {
 
-    const uid = this.authService.currentUser.uid;
     const hype: ApiHype = {
       userId: uid,
       eventId: eventId
@@ -33,9 +32,8 @@ export class EventService {
     return this.http.post<boolean>(`${this.usersUrl}/events`,hype);
   }
 
-  RemoveHypeToEvent(eventId: number): Observable<object> {
+  RemoveHypeToEvent(eventId: number,uid: string): Observable<object> {
 
-    const uid = this.authService.currentUser.uid;
     const url = `${this.usersUrl}/${uid}/events/${eventId}`;
     console.log(url);
 

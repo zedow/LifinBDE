@@ -1,10 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { rejects } from 'assert';
-import * as firebase from 'firebase';
 import { auth } from 'firebase/app';
 import { Observable } from 'rxjs';
+import firebase from 'firebase/app';
 
 // Models
 import { CreateUserModel } from '../models/createUser.model';
@@ -19,8 +20,9 @@ import { UserRead } from '../models/userRead.model';
 export class AuthService {
 
   currentUser : firebase.User = null;
+  private userUrl = 'https://51.159.38.160/api/users';
 
-  constructor(private fireAuth: AngularFireAuth, private fireStore: AngularFirestore) {
+  constructor(private fireAuth: AngularFireAuth, private fireStore: AngularFirestore, private http : HttpClient) {
 
   }
 
@@ -70,21 +72,33 @@ export class AuthService {
       (resolve,reject) => {
         this.fireAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(
           (result) => {
-            const user = result.user;
-            const docRef = this.fireStore.collection('Users').doc(user.uid);
-            docRef.get().toPromise().then(
-              (doc) => {
-                if(!doc.exists)
-                {
-                  docRef.set({
-                    name: user.displayName,
-                    tel: user.phoneNumber,
-                    age: null
-                  })
+              console.log(`${this.userUrl}/${result.user.uid}`);
+
+              this.http.get(`${this.userUrl}/${result.user.uid}`).toPromise().then(
+                (getResult) => {
+                  console.log(getResult);
+                  resolve();
+                  //this.http.post(`${this.userUrl}`,result);
+                },
+                (error) => {
+                    console.log(error);
+                    const newUser = {
+                      id: result.user.uid,
+                      name: result.user.displayName,
+                      email: result.user.email
+                    };
+                    this.http.post(`${this.userUrl}`,newUser).toPromise().then(
+                      () => {
+                        resolve();
+                      },
+                      (error) => {
+                        console.log(error);
+                        reject();
+                      }
+                    );
                 }
-                resolve(result);
-              }
-            );
+              );
+
           }
         );
       }

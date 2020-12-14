@@ -9,16 +9,14 @@
       <p>
         {{ event.date | date:'dd/MM/yy' }}
         {{ event.description }}
-        {{ event.followersNumber}}
-        {{ event.hypedNumber }}
       </p>
     </mat-card-content>
     <mat-card-actions>
       <button mat-button [color]="event.isHyped ? 'warn' : 'disabled'" (click)="getHype(event)">
-        <mat-icon>whatshot</mat-icon>
+        <mat-icon color="primary">whatshot</mat-icon>
         <span class="cdk-visually-hidden">I'm hyped</span>
       </button>
-      <mat-progress-bar mode="determinate" [value]="(event.hypedNumber / event.followersNumber) * 100" color="warn"></mat-progress-bar>
+      <mat-progress-bar mode="determinate" [value]="(event.hypedNumber / event.followersNumber) * 100" color="primary"></mat-progress-bar>
     </mat-card-actions>
   </mat-card>
 </div>
