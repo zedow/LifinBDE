@@ -35,7 +35,7 @@ const routes: Routes = [
       {path: 'bde/:id', component: SingleBdeComponent},
       {path: '', redirectTo: '/events', pathMatch: 'full'},
     ],
-    canActivate: [AngularFireAuthGuard]
+    ...canActivate(redirectUnauthorizedToLogin)
   },
   {path: 'signup', component: SignupComponent},
   {path: 'login', component: SigninComponent,...canActivate(redirectLoggedInToItems)},
