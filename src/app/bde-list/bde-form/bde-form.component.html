@@ -1,0 +1,28 @@
+
+<h2>Ajouter votre BDE</h2>
+<mat-divider></mat-divider>
+<form [formGroup]="newBde">
+  <p>
+    <mat-form-field class="full-width">
+      <mat-label>Nom</mat-label>
+      <input matInput formControlName="name" placeholder="Ex: NormandieBDE">
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field class="full-width">
+      <mat-label>Ecole</mat-label>
+      <input matInput formControlName="school" placeholder="Ex: NormandieWebSchool">
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description" placeholder=""></textarea>
+    </mat-form-field>
+  </p>
+
+  <button mat-raised-button color="primary" (click)="onSubmit()">Ajouter <mat-icon>add</mat-icon></button>
+</form>
+<mat-spinner *ngIf="this.isAdding"></mat-spinner>

@@ -1,0 +1,35 @@
+
+<mat-form-field class="example-full-width">
+  <mat-label>Filtrer</mat-label>
+  <input matInput placeholder="Ex. NormandieBde" (keyup)="applyFilter($event)">
+</mat-form-field>
+
+<div *ngIf="bdeList">
+  <mat-card class="example-card" *ngFor="let bde of bdeList">
+    <mat-card-header>
+      <div mat-card-avatar class="bde-image" style="background: url(https://material.angular.io/assets/img/examples/shiba2.jpg)"></div>
+      <mat-card-title>{{ bde.bde.name }}</mat-card-title>
+      <mat-card-subtitle>{{ bde.bde.school }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        {{ bde.bde.description }}
+        {{ bde.isFollowed}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button *ngIf="bde.isFollowed" mat-button color="primary">
+        SUIVI
+        <mat-icon *ngIf="bde">done</mat-icon>
+      </button>
+      <button mat-raised-button color="primary" (click)="followBde(bde)" *ngIf="!bde.isFollowed">
+        SUIVRE
+      </button>
+      <button mat-button routerLink="{{ bde.bde.id }}">VOIR</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<div class="example-loading-shade"
+       *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+</div>

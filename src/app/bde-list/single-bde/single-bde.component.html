@@ -1,0 +1,19 @@
+
+<app-navigation></app-navigation>
+<div *ngIf="bde">
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar class="bde-image" style="background: url(https://material.angular.io/assets/img/examples/shiba2.jpg)"></div>
+      <mat-card-title>{{ bde.name }}</mat-card-title>
+      <mat-card-subtitle>{{ bde.school }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        {{ bde.description }}
+      </p>
+    </mat-card-content>
+  </mat-card>
+  <app-member-list [bdeId]="bde.id"></app-member-list>
+</div>
+
+

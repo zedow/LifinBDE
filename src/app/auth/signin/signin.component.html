@@ -1,0 +1,22 @@
+
+<div class="signup-container">
+    <img src="../../../assets/logo-couleur-blanc.png" alt="logo" class="logo"/>
+    <p class="connection-title">Connexion</p>
+    <div class="signinForm">
+      <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="example-full-width">
+          <mat-label>Adresse mail</mat-label>
+          <input matInput type="text" placeholder="Ex. membre@gmail.com" formControlName="email">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Mot de passe</mat-label>
+          <input type="password" matInput formControlName="password">
+        </mat-form-field>
+        <button mat-raised-button color="accent" [disabled]="signinForm.invalid">Se connecter</button>
+      </form>
+      <p class="text-danger">{{ errorMessage }}</p>
+      <button mat-raised-button color="accent" class="google-button" (click)="googleSignIn()">Sign in with google</button>
+    </div>
+
+</div>
+

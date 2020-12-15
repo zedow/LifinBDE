@@ -1,0 +1,34 @@
+<mat-sidenav-container class="app-container" autosize>
+  <mat-sidenav #sidenav mode="over" class="sidebar">
+    <button mat-button (click)="sidenav.toggle()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-list>
+      <mat-list-item>
+        <div mat-card-avatar class="bde-image" style="background: url(https://material.angular.io/assets/img/examples/shiba2.jpg)"></div>
+        <span *ngIf="user">{{ user.displayName }}</span>
+      </mat-list-item>
+      <mat-list-item routerLink="bde/new" (click)="sidenav.toggle()"> Ajouter un Bde </mat-list-item>
+      <mat-list-item routerLink="bde" (click)="sidenav.toggle()"> Les Bde </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item *ngIf="user" (click)="signOut()"><mat-icon>login</mat-icon> Déconnexion</mat-list-item>
+    </mat-list>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <p>
+      <mat-toolbar color="primary" class="menu-bar">
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
+          <mat-icon style="color: white;">menu</mat-icon>
+        </button>
+        <a routerLink="/" class="logo">
+          <img src="../../assets/isotype-blanc.png" atl="logo" class="menu-logo">
+        </a>
+        <mat-icon style="color: white;">account_circle</mat-icon>
+      </mat-toolbar>
+    </p>
+    <div class="custom-container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

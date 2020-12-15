@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "lifin-1c28b": {
+      "hosting": {
+        "lifin": [
+          "lifin-1c28b"
+        ]
+      }
+    }
+  }
+}
