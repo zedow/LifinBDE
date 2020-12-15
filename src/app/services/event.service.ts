@@ -11,8 +11,8 @@ import { AuthService } from './auth.service';
 })
 export class EventService {
 
-  private eventsUrl = 'https://51.159.38.160/api/events';
-  private usersUrl = 'https://51.159.38.160/api/users';
+  private eventsUrl = 'https://lifin.qtmsheep.com/api/events';
+  private usersUrl = 'https://lifin.qtmsheep.com/api/users';
 
   constructor(private readonly fireStore: AngularFirestore, private authService: AuthService,
     private http: HttpClient) { }

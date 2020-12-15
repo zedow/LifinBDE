@@ -20,8 +20,8 @@ export class BdeService {
   private bdeCollection: AngularFirestoreCollection<Bde>;
   bdeList: Observable<Bde[]>;
 
-  private bdeUrl = 'https://51.159.38.160/api/bdes';
-  private userUrl = 'https://51.159.38.160/api/users';
+  private bdeUrl = 'https://lifin.qtmsheep.com/api/bdes';
+  private userUrl = 'https://lifin.qtmsheep.com/api/users';
 
   constructor(private readonly fireStore: AngularFirestore, private authService: AuthService,
     private http: HttpClient) {

@@ -20,7 +20,7 @@ import { UserRead } from '../models/userRead.model';
 export class AuthService {
 
   currentUser : firebase.User = null;
-  private userUrl = 'https://51.159.38.160/api/users';
+  private userUrl = 'https://lifin.qtmsheep.com/api/users';
 
   constructor(private fireAuth: AngularFireAuth, private fireStore: AngularFirestore, private http : HttpClient) {
 
