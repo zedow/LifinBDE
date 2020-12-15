@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { firestore } from 'firebase';
 import { ApiEvent, MyEvent } from 'src/app/models/event.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { EventService } from 'src/app/services/event.service';
@@ -23,9 +22,16 @@ export class EventsListComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.fireAuth.authState.subscribe(
+    // this.fireAuth.authState.subscribe(
+    //   (user) => {
+    //     this.currentUser = user.uid;
+
+    //   }
+    // )
+
+    this.fireAuth.currentUser.then(
       (user) => {
-        this.currentUser = user.uid;
+        console.log(user);
         this.eventService.getEvents(user.uid).subscribe(
           (data) => {
 
@@ -43,7 +49,6 @@ export class EventsListComponent implements OnInit {
         );
       }
     )
-
 
   }
 

@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { rejects } from 'assert';
-import { auth } from 'firebase/app';
 import { Observable } from 'rxjs';
 import firebase from 'firebase/app';
 
@@ -77,6 +76,7 @@ export class AuthService {
               this.http.get(`${this.userUrl}/${result.user.uid}`).toPromise().then(
                 (getResult) => {
                   console.log(getResult);
+                  this.currentUser = getResult as firebase.User;
                   resolve();
                   //this.http.post(`${this.userUrl}`,result);
                 },
@@ -138,10 +138,6 @@ export class AuthService {
 
       }
     )
-  }
-
-  getCurrentUserRef() : firebase.firestore.DocumentReference {
-    return this.fireStore.collection('Users').doc(this.currentUser.uid).ref
   }
 
   getCurrentUser() : Observable<firebase.User> {

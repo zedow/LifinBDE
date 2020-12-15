@@ -3,9 +3,8 @@ import { Observable, of } from 'rxjs';
 import { ApiBde, ApiBdeCreate, ApiMember, Bde, BdeListItem, IApiUserBde, NewBde, newBdeMember } from '../models/bde.model';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument  } from '@angular/fire/firestore'
 import { AuthService } from './auth.service';
-import { Follow, IApiCreateFollower, IApiFollower } from '../models/follow.model';
+import { IApiCreateFollower, IApiFollower } from '../models/follow.model';
 import { last, map } from 'rxjs/operators';
-import { firestore } from 'firebase';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Member } from '../models/user.model';
 import { MemberListComponent } from '../bde-list/single-bde/member-list/member-list.component';
@@ -93,9 +92,9 @@ export class BdeService {
     return this.http.get<ApiBde>(`${this.bdeUrl}/${id}`);
   }
 
-  FollowBde(bdeId: number): Observable<IApiFollower> {
+  FollowBde(bdeId: number,userid: string): Observable<IApiFollower> {
     const follow: IApiCreateFollower = {
-      userId: 'OqBbyIQGLDU4nvoniFzLLKC3IFp2'
+      userId: userid
     }
     return this.http.post<IApiFollower>(`${this.bdeUrl}/${bdeId}/follow`,follow);
   }

@@ -10,16 +10,16 @@ import { AuthService } from 'src/app/services/auth.service';
 
 export class MenuProfileComponent implements OnInit {
 
-  user: firebase.User;
+  user: firebase.default.User;
 
   constructor(private authService: AuthService, private fireAuth: AngularFireAuth) { }
 
   ngOnInit(): void {
 
-    this.fireAuth.authState.subscribe(
-      (value) => {
-        this.user = value;
-      }
-    );
+    // this.fireAuth.authState.subscribe(
+    //   (value) => {
+    //     this.user = value;
+    //   }
+    // );
   }
 }

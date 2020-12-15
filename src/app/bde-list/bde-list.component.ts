@@ -36,21 +36,16 @@ export class BdeListComponent implements AfterViewInit  {
 
   currentUserId: string;
 
-  constructor(private bdeService: BdeService, private fireAuth: AngularFireAuth ,private _authService: AuthService, private _snackBar: MatSnackBar) {}
+  constructor(private bdeService: BdeService, private fireAuth: AngularFireAuth ,private _authService: AuthService, private _snackBar: MatSnackBar) {
 
-  ngAfterViewInit(): void {
-
-    this.fireAuth.authState.subscribe(
+    this.fireAuth.currentUser.then(
       (user) => {
         this.currentUserId = user.uid;
       }
     );
+  }
 
-    this.fireAuth.onAuthStateChanged((user) => {
-      console.log(" ALLO");
-
-      console.log(user);
-    })
+  ngAfterViewInit(): void {
 
     this.filterValue.subscribe(data => {
       this.filtertext = data;
@@ -81,7 +76,7 @@ export class BdeListComponent implements AfterViewInit  {
 
   followBde(bde: IApiUserBde) {
 
-    this.bdeService.FollowBde(bde.bde.id).subscribe(
+    this.bdeService.FollowBde(bde.bde.id,this.currentUserId).subscribe(
       (data) => {
 
         if(data == null)

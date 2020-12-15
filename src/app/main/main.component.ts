@@ -10,16 +10,15 @@ import { AuthService } from '../services/auth.service';
 })
 export class MainComponent implements OnInit {
 
-  user: firebase.User;
+  user: firebase.default.User;
 
   constructor(private authService: AuthService, private router: Router, private fireAuth: AngularFireAuth) { }
 
   ngOnInit(): void {
-    this.fireAuth.signOut();
-    this.fireAuth.authState.subscribe(
-      (value) => {
-        this.user = value;
-        this.authService.currentUser = value;
+    this.fireAuth.currentUser.then(
+      (user) => {
+        this.user = user;
+        console.log(user);
       }
     );
   }

@@ -1,4 +1,4 @@
-import { firestore } from 'firebase'
+
 
 export interface NewBde {
   name: string
@@ -51,9 +51,6 @@ export interface BdeListItem extends Bde {
 }
 
 export interface newBdeMember {
-
-  userRef: firestore.DocumentReference;
-  bdeRef: firestore.DocumentReference;
   role: string;
   date: Date;
   userId: string;

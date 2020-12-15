@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { firestore } from 'firebase';
 import { Observable, of, scheduled } from 'rxjs';
 import { ApiEvent, ApiHype, MyEvent } from '../models/event.model';
 import { AuthService } from './auth.service';
