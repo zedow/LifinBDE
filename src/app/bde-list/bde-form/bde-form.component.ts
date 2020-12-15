@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -17,9 +18,18 @@ export class BdeFormComponent implements OnInit {
 
   newBde: FormGroup;
   isAdding = false;
+  currentUser: string;
 
   constructor(private formBuilder: FormBuilder, private bdeService: BdeService, private router: Router, private authService: AuthService,
-    private _snackBar: MatSnackBar) { }
+    private _snackBar: MatSnackBar,
+    private fireAuth: AngularFireAuth) {
+      this.fireAuth.currentUser.then(
+        (user) => {
+          this.currentUser = user.uid;
+        }
+      )
+
+    }
 
   ngOnInit(): void {
     this.initForm();
@@ -45,7 +55,7 @@ export class BdeFormComponent implements OnInit {
       name: name,
       school: school,
       description: description,
-      ownerId: this.authService.currentUser.uid
+      ownerId: this.currentUser
     };
 
     this.bdeService.AddBde(bde).subscribe(
