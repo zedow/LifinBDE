@@ -32,6 +32,7 @@ export class EventsListComponent implements OnInit {
     this.fireAuth.currentUser.then(
       (user) => {
         console.log(user);
+        this.currentUser = user.uid;
         this.eventService.getEvents(user.uid).subscribe(
           (data) => {
 

@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable, of, scheduled } from 'rxjs';
-import { ApiEvent, ApiHype, MyEvent } from '../models/event.model';
+import { environment } from 'src/environments/environment';
+import { ApiCreateEvent, ApiEvent, ApiHype, MyEvent } from '../models/event.model';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -10,8 +11,8 @@ import { AuthService } from './auth.service';
 })
 export class EventService {
 
-  private eventsUrl = 'https://lifin.qtmsheep.com/api/events';
-  private usersUrl = 'https://lifin.qtmsheep.com/api/users';
+  private eventsUrl = `${environment.apiUrl}events`;
+  private usersUrl = `${environment.apiUrl}users`;
 
   constructor(private readonly fireStore: AngularFirestore, private authService: AuthService,
     private http: HttpClient) { }
@@ -21,6 +22,9 @@ export class EventService {
     return this.http.get<ApiEvent[]>(`${this.usersUrl}/${uid}/events`);
   }
 
+  AddEvent(event: ApiCreateEvent) {
+    return this.http.post<ApiCreateEvent>(`${this.eventsUrl}`,event);
+  }
 
   AddHypeToEvent(eventId: number,uid: string): Observable<boolean> {
 

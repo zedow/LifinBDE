@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  apiUrl: "https://lifin.qtmsheep.com/api/",
   firebase: {
     apiKey: "AIzaSyBNq5Tr5yT2l3zbCpzf6Vfqbe2c5EZNY4c",
     authDomain: "lifin-1c28b.firebaseapp.com",

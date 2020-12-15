@@ -10,6 +10,7 @@ import { Member } from '../models/user.model';
 import { MemberListComponent } from '../bde-list/single-bde/member-list/member-list.component';
 import { HttpClient } from '@angular/common/http';
 import { ICreateMember } from '../models/member.mode';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -19,13 +20,17 @@ export class BdeService {
   private bdeCollection: AngularFirestoreCollection<Bde>;
   bdeList: Observable<Bde[]>;
 
-  private bdeUrl = 'https://lifin.qtmsheep.com/api/bdes';
-  private userUrl = 'https://lifin.qtmsheep.com/api/users';
+  private bdeUrl = `${environment.apiUrl}bdes`;
+  private userUrl = `${environment.apiUrl}users`;
 
   constructor(private readonly fireStore: AngularFirestore, private authService: AuthService,
     private http: HttpClient) {
     this.bdeCollection = fireStore.collection<Bde>('BDE');
     this.bdeList = this.bdeCollection.valueChanges({idField: 'id'});
+  }
+
+  GetOwnedBde(userId: string) : Observable<ApiBde[]> {
+    return this.http.get<ApiBde[]>(`${this.userUrl}/${userId}/bde/owned`);
   }
 
   AddBde(bde: ApiBdeCreate): Observable<ApiBde> {

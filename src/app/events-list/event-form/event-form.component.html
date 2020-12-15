@@ -1,0 +1,42 @@
+
+<h2>Ajouter un événement</h2>
+<mat-divider></mat-divider>
+<form [formGroup]="newEvent">
+  <br/>
+  <p>
+    <mat-form-field class="full-width">
+      <mat-label>Pour quel BDE ?</mat-label>
+      <mat-select formControlName="bdeId">
+        <mat-option *ngFor="let bde of bdes" [value]="bde.id">
+          {{bde.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="full-width">
+      <mat-label>Nom</mat-label>
+      <input matInput formControlName="name" placeholder="Ex: NormandieBDE">
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field class="full-width">
+      <mat-label>Décris ton événement</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field class="full-width">
+      <mat-label>Date de l'événement</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </p>
+
+  <button mat-raised-button color="primary" (click)="onSubmit()">Ajouter <mat-icon>add</mat-icon></button>
+</form>
+<!--
+<mat-spinner *ngIf="this.isAdding"></mat-spinner> -->

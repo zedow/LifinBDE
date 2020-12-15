@@ -13,7 +13,7 @@
     </mat-card-content>
     <mat-card-actions>
       <button mat-button [color]="event.isHyped ? 'warn' : 'disabled'" (click)="getHype(event)">
-        <mat-icon color="primary">whatshot</mat-icon>
+        <mat-icon [color]="event.isHyped ? 'primary' : 'disabled'">whatshot</mat-icon>
         <span class="cdk-visually-hidden">I'm hyped</span>
       </button>
       <mat-progress-bar mode="determinate" [value]="(event.hypedNumber / event.followersNumber) * 100" color="primary"></mat-progress-bar>

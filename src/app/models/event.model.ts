@@ -20,6 +20,13 @@ export interface ApiEvent {
   bde: ApiBde;
 }
 
+export interface ApiCreateEvent {
+  name: string;
+  description: string;
+  date: Date;
+  bdeId: number;
+}
+
 export interface ApiHype {
   eventId: number;
   userId: string;

@@ -10,6 +10,7 @@ import { BdeFormComponent } from './bde-list/bde-form/bde-form.component';
 import { SingleBdeComponent } from './bde-list/single-bde/single-bde.component';
 import { ProfileComponent } from './auth/profile/profile.component';
 import { EventsListComponent } from './events-list/events-list/events-list.component';
+import { EventFormComponent } from './events-list/event-form/event-form.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path: '', component: MainComponent,
     children: [
       {path: 'events', component: EventsListComponent},
+      {path: 'events/new', component: EventFormComponent},
       {path: 'bde', component: BdeListComponent},
       {path: 'bde/new', component: BdeFormComponent},
       {path: 'bde/:id', component: SingleBdeComponent},
